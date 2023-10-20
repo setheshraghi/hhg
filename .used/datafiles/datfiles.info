@@ -1,0 +1,16 @@
+the column names for each data file are as follows
+
+wave.dat
+x norm(psi) Re(psi) Im(psi)
+
+potential.dat
+x V(x)
+
+verify.txt
+t norm(psi) x(t) H(t) p(t)
+
+transmission.dat
+t T(t)
+
+F.dat
+k T(k)_num erro T(k)_anal

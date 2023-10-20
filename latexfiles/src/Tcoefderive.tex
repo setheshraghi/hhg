@@ -1,0 +1,194 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsfonts,amsmath,amsthm,amssymb,mathtools,empheq,array}
+\usepackage{pgfplots,float,parskip}
+\usepackage{pythonhighlight}
+
+\graphicspath{{../assets/}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Seth Eshraghi, \today}
+\rfoot{Page \thepage}
+
+\begin{document}
+
+    \section*{\sloppy Transmission Coeffecient of a Finite Potential Well
+    Derivation}
+
+    We compute the transmission coefficient ($T$) by definition ($T^{-1} =
+    \frac{\left| A \right| ^{2}}{\left| F \right| ^{2}}$), substituting $F$ with
+    equivalent expression in terms of the energy of the wave ($E$) and the
+    depth of the potential well. We choose units such that $\hbar = 1$ and
+    asuume $m = 1$.
+
+    Suppose a potential well has a width of $2a$ and is centered at $x = 0$,
+    where the potential $V(x)$ is equal to $-V_0$ for $-a \leq x \leq a$ and $0$
+    for $x > a$ and $x < -a$. We label the region corresponding to $x < -a$ as
+    region I, to $-a < x < a$ as region II, to $x > a$ as region III. During our
+    meetings we solved for the one-dimentional time-independent Schrödinger
+    equation for when $E > V(x)$ and $E < V(x)$, obtaining
+
+    \begin{align*}
+        \Psi_\mathrm{I}(x) &= Ae^{ikx} + Be^{-ikx} \\
+        \Psi_{\mathrm{II}}(x) &= C\sin(lx) + D\cos(lx) \\
+        \Psi_{\mathrm{III}}(x) &= Fe^{ikx}
+    \end{align*}
+
+    where $l = \sqrt{2(E + V_0)}$, $k = \sqrt{2E}$ and the subscript of the
+    denotation of each function indicates over which region the function is
+    defined. The requirements to stitch the three functions into one function
+    follows the properties of a valid solution to the Schrödinger equation:
+
+    \begin{gather}
+        Ae^{-ika} + Be^{ika} = -C\sin(la) + D\cos(la) \label{stitch1} \\
+        C\sin(la) + D\cos(la) = Fe^{ika} \label{stitch2} \\
+        ik(Ae^{-ika} - Be^{ika}) = l(C\cos(la) + D\sin(la)) \label{stitch3} \\
+        l(C\cos(la) - D\sin(la)) = ikFe^{ika} \label{stitch4}
+    \end{gather}
+
+    Now we solve for $F$ in terms of $l$, $k$, $a$, and $A$. From
+    equation \eqref{stitch2}, we solve
+
+    \begin{equation}
+        C = \frac{Fe^{ika} - D\cos(la)}{\sin(la)} \label{CinD}
+    \end{equation}
+
+    and substitute into equation \eqref{stitch4} to solve for
+
+    \begin{gather*}
+        Fe^{ika}
+        \left(
+        \frac{ik}{l}\sin(la) - \cos(la)) = -D(\cos^2(la) + \sin^2(la)
+        \right)
+        \\
+        D = Fe^{ika}
+        \left(
+        \cos(la) - \frac{ik}{l}\sin(la)
+        \right)
+    \end{gather*}
+
+    Then we substitute $D$ in terms of $F$ into equation \eqref{CinD} and
+    simplify. Note $1 - \cos^2(la) = 1 - 1 - \frac{1}{2}(1 + \cos(2la)) = 1 -
+    \frac{1}{2}(1 + 1 - 2\sin^2(la)) = \sin^2(la)$.
+
+    \[
+        C
+        = \frac{Fe^{ika}(1 - \cos^2(la) +
+        \frac{ik}{l}\cos(la)\sin(la))}{\sin(la)}
+        = Fe^{ika}
+        \left(
+        \frac{1 - \cos^2(la)}{\sin(la)} + \frac{ik}{l}\cos(la)
+        \right)
+    \]
+
+    \[
+        C = Fe^{ika}
+        \left(
+        \sin(la) + \frac{ik}{l}\cos(la)
+        \right)
+    \]
+
+    Note $\cos^2(la) - \sin^2(la) = \cos(2la)$ and $2\cos(la)\sin(la) =
+    \sin(2la)$. Substituting $D$ and $C$ in terms of $F$ into equation
+    \eqref{stitch1}, we get
+
+    \begin{gather}
+        Ae^{-ika}
+        = Fe^{ika}
+        \left(
+        -\sin^2(la) - \frac{ik}{l}\cos(la)\sin(la) + \cos^2(la)
+        - \frac{ik}{l}\sin(la)\cos(la)
+        \right)
+        - Be^{ika}
+        \nonumber
+        \\
+        = Fe^{ika}
+        \left(
+        \cos(2la) - \frac{ik}{l}\sin(2la)
+        \right)
+        - Be^{ika}. \label{AinFB}
+    \end{gather}
+
+    Now we substitute this result and $D$ and $C$ in terms of $F$ into equation
+    \eqref{stitch3}, and solve for $B$.
+
+    \begin{align*}
+        Fe^{ika}
+        \left(
+        -\frac{ik}{l}\sin(2la) + \cos(2la)
+        \right)
+        - 2Be^{ika}
+        &=
+        \frac{l}{ik}Fe^{ika}
+        \left(
+        2\cos(la)\sin(la) + \frac{ik}{l}\cos^2(la) - \frac{ik}{l}\sin^2(la)
+        \right)
+        \\
+        -2B &= F\sin(2la)
+        \left(
+        \frac{l}{ik} + \frac{ik}{l}
+        \right)
+        \\
+        B &= i\frac{\sin(2la)}{2kl}(l^2 - k^2)F
+    \end{align*}
+
+    To solve for $F$ in terms of $A$ we substitute $B$, $C$, and $D$ into
+    equation \eqref{AinFB}.
+
+    \begin{gather*}
+        Ae^{-ika}
+        = Fe^{ika}
+        \left(
+        \cos(2la) - \frac{ik}{l}\sin(2la)
+        - i\frac{\sin(2la)}{2kl}(l^2 - k^2)
+        \right)
+        \\
+        Ae^{-2ika}
+        = Fe^{ika}
+        \left(
+        \cos(2la) -
+        \left(
+        \frac{ik}{l} + \frac{i(l^2 - k^2)}{2lk}
+        \right)
+        \sin(2la)
+        \right)
+        \\
+        F = \frac{e^{-2ika}A}{\cos(2la) - i
+        \left(
+        \frac{k^2 + l^2}{2kl}
+        \right)
+        \sin(2la)}
+    \end{gather*}
+
+    \pagebreak
+
+    Finally, we compute $T^{-1}$ and rewrite it in terms of $E$ and $V_0$.
+
+    \begin{gather*}
+        T^{-1} = \frac{\left| A \right| ^{2}}{\left| F \right| ^{2}}
+        = \frac{\left| A \right| ^{2}}{
+            \frac{\left| e^{-2ika} \right| ^2 \left| A \right | ^2}{
+                    \left|
+                    \cos^2(2la) + i \left( \frac{k^2 + l^2}{2kl} \right)
+                    \sin(2la)
+                    \right| ^2
+                }
+            }
+        = \cos^2(2la) + \left( \frac{(k^2 + l^2)^2}{4k^2l^2} \right) \sin^2(2la)
+        \\
+        = 1 - \sin^2(2la) + \left( \frac{(k^2 + l^2)^2}{4k^2l^2}
+        \right) \sin^2(2la)
+        = 1 + \left( \frac{k^4 - 2k^2l^2 + l^4}{4k^2l^2} \right) \sin^2(2la)
+        \\
+        = 1 + \left( \frac{4E^2 - 8E(E + V_0) + 4(E^2 + 2EV_0 + V_0^2)}
+        {16E(E + V_0)} \right) \sin^2(2a\sqrt{2(E + V_0)}
+    \end{gather*}
+
+    \begin{center}
+        \boxed{
+            T = \frac{1}{1 + \left( \frac{V_0}{4E(E + V_0)} \right)
+            \sin^2(2a\sqrt{2(E + V_0)}}
+        }
+    \end{center}
+\end{document}
