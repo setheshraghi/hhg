@@ -6,7 +6,7 @@ static double exist_prob(const complex double* psi1,
         const complex double* psi2) {
     double sum = 0;
     for (int j = 0; j < nx; j++) {
-        sum += psi1[j] * conj(psi2[j]);
+        sum += conj(psi1[j]) * psi2[j];
     }
     return sum;
 }
@@ -57,40 +57,53 @@ static double expect_p(const complex double* psi) {
 int main() {
     FILE* results = fopen(".used/datafiles/verify.txt", "w");
     double* xpos = (double*) calloc(nx, sizeof(double));
-    complex double* psi = (complex double*) calloc(nx, sizeof(complex double));
+    complex double* psi0 = (complex double*) calloc(nx, sizeof(complex double));
     double* normed = (double*) calloc(nx, sizeof(double));
     complex double* phi = (complex double*) calloc(nx, sizeof(complex double));
     double* V = (double*) calloc(nx, sizeof(double));
     // diagonal vectors, d2 is used by the solver function
     complex double* d = (complex double*) calloc(nx, sizeof(complex double));
     complex double* d2 = (complex double*) calloc(nx, sizeof(complex double));
-    complex double* psi_tilda = (complex double*)
+    complex double* psi0_tilda = (complex double*)
         calloc(nx, sizeof(complex double));
 
+    float k, dt;
+    scanf("k=%f,dt=%f", &k, &dt);
     init_x(xpos);
-    init_psi0(psi, xpos, 3);
-    norm(normed, psi);
-    fprintf(results, "%lf %lf %lf %lf %lf\n", 0.0, exist_prob(psi, psi),
-            expect_x(normed), expect_H(psi, V), expect_p(psi));
+    init_psi0(psi0, xpos, k);
+    norm(normed, psi0);
+    fprintf(results, "%lf %lf %lf %lf %lf\n", 0.0, exist_prob(psi0, psi0),
+            expect_x(normed), expect_H(psi0, V), expect_p(psi0));
 
     init_V(V, xpos);
-    init_d(d, d2, V);
-
-    for (int n = 1; n < nt; n++) {
-        next_phi(psi, phi, V);
-        solver(psi, phi, d, d2, 1);
-        norm(normed, psi);
-        fprintf(results, "%.2lf %lf %lf %lf %lf\n",
-                n * dt,
-                exist_prob(psi, psi),
-                expect_x(normed),
-                expect_H(psi, V),
-                expect_p(psi));
+    init_d(d, d2, V, dt);
+    for (int j = 0; j < nx; j++) {
+        psi0_tilda[j] = psi0[j];
     }
 
+    for (int n = 1; n < nt; n++) {
+        next_phi(psi0_tilda, phi, V, dt);
+        solver(psi0_tilda, phi, d, d2, 1, dt);
+        norm(normed, psi0_tilda);
+        fprintf(results, "%.2lf %lf %lf %lf %lf\n",
+                n * dt,
+                exist_prob(psi0_tilda, psi0_tilda),
+                expect_x(normed),
+                expect_H(psi0_tilda, V),
+                expect_p(psi0_tilda));
+    }
+
+    dt = -dt;
+    init_d(d, d2, V, dt);
+    for (int n = 1; n < nt; n++) {
+        next_phi(psi0_tilda, phi, V, dt);
+        solver(psi0_tilda, phi, d, d2, 1, dt);
+    }
+    printf("\t autocorr norm: %lf\n", exist_prob(psi0, psi0_tilda));
+
     free(xpos);
-    free(psi);
-    free(psi_tilda);
+    free(psi0);
+    free(psi0_tilda);
     free(phi);
     free(V);
     free(normed);

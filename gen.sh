@@ -11,7 +11,7 @@ else
 fi
 make clean
 
-.used/otherexecs/datagen
+.used/otherexecs/datagen < .used/parameters.txt
 if [ $? -eq 0 ]; then
     echo data generated...
 else

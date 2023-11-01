@@ -1,0 +1,22 @@
+\contentsline {section}{Introduction}{1}%
+\contentsline {section}{Theory}{2}%
+\contentsline {subsection}{Implicit Scheme of Propegation}{2}%
+\contentsline {paragraph}{Total Energy}{3}%
+\contentsline {paragraph}{Error}{4}%
+\contentsline {paragraph}{Unitary Operator}{4}%
+\contentsline {subsection}{Model Boundary Conditions and Parameters}{5}%
+\contentsline {subsection}{Computer Representation of the Hamiltonian and Wave Function}{5}%
+\contentsline {paragraph}{Wave Function as a Column Vector}{5}%
+\contentsline {paragraph}{The Propagator Matrix}{6}%
+\contentsline {subsection}{Finite Square Potential Well}{6}%
+\contentsline {subsubsection}{Transmission Coefficient}{6}%
+\contentsline {subsection}{Expected Values over Time}{9}%
+\contentsline {subsubsection}{Constant Potential Energy}{9}%
+\contentsline {subsubsection}{Finite Square Potential Well}{10}%
+\contentsline {paragraph}{Effects of Changing Well Width and Energy}{10}%
+\contentsline {section}{Results}{12}%
+\contentsline {subsection}{Verifying Implementation}{12}%
+\contentsline {subsubsection}{Examining Expected Values}{12}%
+\contentsline {subsubsection}{Autocorrelation for $\left | \Psi \right | ^ 2$ through Negative Time}{16}%
+\contentsline {subsection}{Numerical Calculations of the Transmission Coefficient}{17}%
+\contentsline {subsubsection}{Extended Verification}{19}%

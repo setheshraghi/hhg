@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -Werror -c
+CFLAGS = -Wall -Wextra -c
 
 all: datagen verify transmission
 

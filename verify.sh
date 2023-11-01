@@ -11,14 +11,14 @@ else
 fi
 make clean
 
-.used/otherexecs/verify
+.used/otherexecs/verify < .used/parameters.txt
 if [ $? -eq 0 ]; then
     echo data generated...
 else
     exit 1
 fi
 
-./vfiguresgen.plt
+.used/otherexecs/vfiguresgen.plt
 if [ $? -eq 0 ]; then
     echo figures generated
 else

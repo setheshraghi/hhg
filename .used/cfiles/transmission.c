@@ -35,6 +35,9 @@ int main() {
     complex double* d = (complex double*) calloc(nx, sizeof(complex double));
     complex double* d2 = (complex double*) calloc(nx, sizeof(complex double));
 
+    float dt;
+    scanf("k=%f,dt=%f", &dt, &dt);
+
     double ki = 0.02;
     double kf = 2.5;
     double dk = (kf - ki) / 100;
@@ -45,17 +48,17 @@ int main() {
         Tprint(trans_data, psi, 0);
 
         init_V(V, xpos);
-        init_d(d, d2, V);
+        init_d(d, d2, V, dt);
 
         for (int n = 1; n < 324; n++) {
-            next_phi(psi, phi, V);
-            solver(psi, phi, d, d2, 1);
+            next_phi(psi, phi, V, dt);
+            solver(psi, phi, d, d2, 1, dt);
             Tprint(trans_data, psi, dt * n);
         }
         Fprint(F_data, psi, curr_k, k_half_width);
         for (int n = 325; n < nt; n++) {
-            next_phi(psi, phi, V);
-            solver(psi, phi, d, d2, 1);
+            next_phi(psi, phi, V, dt);
+            solver(psi, phi, d, d2, 1, dt);
             Tprint(trans_data, psi, dt * n);
         }
         fprintf(trans_data, "end\n");

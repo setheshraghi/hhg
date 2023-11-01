@@ -10,7 +10,7 @@ else
 fi
 make clean
 
-.used/otherexecs/transmission
+.used/otherexecs/transmission < .used/parameters.txt
 if [ $? -eq 0 ]; then
     echo data generated...
 else

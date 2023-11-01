@@ -23,20 +23,22 @@ int main() {
     complex double* d = (complex double*) calloc(nx, sizeof(complex double));
     complex double* d2 = (complex double*) calloc(nx, sizeof(complex double));
 
+    float k, dt;
+    scanf("k=%f,dt=%f", &k, &dt);
     init_x(xpos);
-    init_psi0(psi, xpos, 0.59);
+    init_psi0(psi, xpos, k);
     norm(normed, psi);
     write_vec(data, normed, psi, xpos);
 
     init_V(V, xpos);
-    init_d(d, d2, V);
+    init_d(d, d2, V, dt);
     for (int j = 0; j < nx; j++) {
         fprintf(potential, "%lf %lf\n", xpos[j], V[j]);
     }
 
     for (int n = 1; n < nt; n++) {
-        next_phi(psi, phi, V);
-        solver(psi, phi, d, d2, 1);
+        next_phi(psi, phi, V, dt);
+        solver(psi, phi, d, d2, 1, dt);
         norm(normed, psi);
         write_vec(data, normed, psi, xpos);
     }
