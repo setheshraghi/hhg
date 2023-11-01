@@ -12,7 +12,7 @@ static void Fprint(FILE* data, complex double* psi, double n, double error) {
     for (int j = nx * 0.55; j < nx; j++) {
         F += psi[j] * conj(psi[j]);
     }
-    fprintf(data, "%lf %lf %lf %lf\n", n, F, error, T(n)); // A = 1 => T = F
+    fprintf(data, "%lf %lf %lf %lf\n", n, F, error, T(n));
 }
 
 static void Tprint(FILE* data, complex double* psi, double n) {

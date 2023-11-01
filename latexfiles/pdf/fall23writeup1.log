@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  31 OCT 2023 22:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  1 NOV 2023 00:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -782,12 +782,12 @@ Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count317
-LaTeX Font Info:    Trying to load font information for U+msa on input line 21.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 22.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -810,81 +810,82 @@ Make it at least 14.49998pt.
 We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
-[1] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11]
+[1] (./intro.tex) [1] (./theory.tex [2] [3] [4] [5] [6] [7] [8] [9]) [10]
+[11] (./results.tex
 <../../.used/figures/norm.png, id=63, 301.125pt x 225.84375pt>
 File: ../../.used/figures/norm.png Graphic file (type png)
 <use ../../.used/figures/norm.png>
-Package pdftex.def Info: ../../.used/figures/norm.png  used on input line 666.
+Package pdftex.def Info: ../../.used/figures/norm.png  used on input line 26.
 (pdftex.def)             Requested size: 234.00238pt x 175.50954pt.
  [12 <../pdf//../../.used/figures/norm.png>]
 <../assets/Hc0.59.png, id=70, 301.125pt x 225.84375pt>
 File: ../assets/Hc0.59.png Graphic file (type png)
 <use ../assets/Hc0.59.png>
-Package pdftex.def Info: ../assets/Hc0.59.png  used on input line 695.
+Package pdftex.def Info: ../assets/Hc0.59.png  used on input line 54.
 (pdftex.def)             Requested size: 155.99762pt x 117.00175pt.
 <../assets/pc0.59.png, id=71, 301.125pt x 225.84375pt>
 File: ../assets/pc0.59.png Graphic file (type png)
 <use ../assets/pc0.59.png>
-Package pdftex.def Info: ../assets/pc0.59.png  used on input line 697.
+Package pdftex.def Info: ../assets/pc0.59.png  used on input line 56.
 (pdftex.def)             Requested size: 155.99762pt x 117.00175pt.
 <../assets/xc0.59.png, id=72, 301.125pt x 225.84375pt>
 File: ../assets/xc0.59.png Graphic file (type png)
 <use ../assets/xc0.59.png>
-Package pdftex.def Info: ../assets/xc0.59.png  used on input line 702.
+Package pdftex.def Info: ../assets/xc0.59.png  used on input line 61.
 (pdftex.def)             Requested size: 155.99762pt x 117.00175pt.
  [13 <../pdf//../assets/Hc0.59.png> <../pdf//../assets/pc0.59.png> <../pdf//../
 assets/xc0.59.png>]
 <../assets/Hc1.png, id=80, 301.125pt x 225.84375pt>
 File: ../assets/Hc1.png Graphic file (type png)
 <use ../assets/Hc1.png>
-Package pdftex.def Info: ../assets/Hc1.png  used on input line 730.
+Package pdftex.def Info: ../assets/Hc1.png  used on input line 87.
 (pdftex.def)             Requested size: 155.99762pt x 117.00175pt.
 <../assets/pc1.png, id=81, 301.125pt x 225.84375pt>
 File: ../assets/pc1.png Graphic file (type png)
 <use ../assets/pc1.png>
-Package pdftex.def Info: ../assets/pc1.png  used on input line 732.
+Package pdftex.def Info: ../assets/pc1.png  used on input line 89.
 (pdftex.def)             Requested size: 155.99762pt x 117.00175pt.
 <../assets/xc1.png, id=82, 301.125pt x 225.84375pt>
 File: ../assets/xc1.png Graphic file (type png)
 <use ../assets/xc1.png>
-Package pdftex.def Info: ../assets/xc1.png  used on input line 736.
+Package pdftex.def Info: ../assets/xc1.png  used on input line 93.
 (pdftex.def)             Requested size: 155.99762pt x 117.00175pt.
  [14 <../pdf//../assets/Hc1.png> <../pdf//../assets/pc1.png> <../pdf//../assets
 /xc1.png>]
 <../assets/smallwell.png, id=89, 638.385pt x 482.80376pt>
 File: ../assets/smallwell.png Graphic file (type png)
 <use ../assets/smallwell.png>
-Package pdftex.def Info: ../assets/smallwell.png  used on input line 767.
+Package pdftex.def Info: ../assets/smallwell.png  used on input line 122.
 (pdftex.def)             Requested size: 234.00238pt x 176.96965pt.
 <../assets/Hw0.59.png, id=91, 301.125pt x 225.84375pt>
 File: ../assets/Hw0.59.png Graphic file (type png)
 <use ../assets/Hw0.59.png>
-Package pdftex.def Info: ../assets/Hw0.59.png  used on input line 788.
+Package pdftex.def Info: ../assets/Hw0.59.png  used on input line 142.
 (pdftex.def)             Requested size: 117.00119pt x 87.75131pt.
 <../assets/pw0.59.png, id=92, 301.125pt x 225.84375pt>
 File: ../assets/pw0.59.png Graphic file (type png)
 <use ../assets/pw0.59.png>
-Package pdftex.def Info: ../assets/pw0.59.png  used on input line 790.
+Package pdftex.def Info: ../assets/pw0.59.png  used on input line 144.
 (pdftex.def)             Requested size: 117.00119pt x 87.75131pt.
 <../assets/xw0.59.png, id=93, 301.125pt x 225.84375pt>
 File: ../assets/xw0.59.png Graphic file (type png)
 <use ../assets/xw0.59.png>
-Package pdftex.def Info: ../assets/xw0.59.png  used on input line 792.
+Package pdftex.def Info: ../assets/xw0.59.png  used on input line 146.
 (pdftex.def)             Requested size: 117.00119pt x 87.75131pt.
 <../assets/Hw1.png, id=94, 301.125pt x 225.84375pt>
 File: ../assets/Hw1.png Graphic file (type png)
 <use ../assets/Hw1.png>
-Package pdftex.def Info: ../assets/Hw1.png  used on input line 796.
+Package pdftex.def Info: ../assets/Hw1.png  used on input line 150.
 (pdftex.def)             Requested size: 117.00119pt x 87.75131pt.
 <../assets/pw1.png, id=95, 301.125pt x 225.84375pt>
 File: ../assets/pw1.png Graphic file (type png)
 <use ../assets/pw1.png>
-Package pdftex.def Info: ../assets/pw1.png  used on input line 798.
+Package pdftex.def Info: ../assets/pw1.png  used on input line 152.
 (pdftex.def)             Requested size: 117.00119pt x 87.75131pt.
 <../assets/xw1.png, id=96, 301.125pt x 225.84375pt>
 File: ../assets/xw1.png Graphic file (type png)
 <use ../assets/xw1.png>
-Package pdftex.def Info: ../assets/xw1.png  used on input line 800.
+Package pdftex.def Info: ../assets/xw1.png  used on input line 154.
 (pdftex.def)             Requested size: 117.00119pt x 87.75131pt.
  [15 <../pdf//../assets/smallwell.png>] [16 <../pdf//../assets/Hw0.59.png> <../
 pdf//../assets/pw0.59.png> <../pdf//../assets/xw0.59.png> <../pdf//../assets/Hw
@@ -892,108 +893,109 @@ pdf//../assets/pw0.59.png> <../pdf//../assets/xw0.59.png> <../pdf//../assets/Hw
 <../assets/autocorr.out.png, id=110, 171.64125pt x 17.06375pt>
 File: ../assets/autocorr.out.png Graphic file (type png)
 <use ../assets/autocorr.out.png>
-Package pdftex.def Info: ../assets/autocorr.out.png  used on input line 854.
+Package pdftex.def Info: ../assets/autocorr.out.png  used on input line 207.
 (pdftex.def)             Requested size: 272.99881pt x 27.14265pt.
 <../assets/translarge.png, id=111, 642.4pt x 479.7925pt>
 File: ../assets/translarge.png Graphic file (type png)
 <use ../assets/translarge.png>
-Package pdftex.def Info: ../assets/translarge.png  used on input line 884.
+Package pdftex.def Info: ../assets/translarge.png  used on input line 237.
 (pdftex.def)             Requested size: 155.99762pt x 116.50693pt.
 <../assets/largewell.png, id=112, 642.4pt x 479.7925pt>
 File: ../assets/largewell.png Graphic file (type png)
 <use ../assets/largewell.png>
-Package pdftex.def Info: ../assets/largewell.png  used on input line 886.
+Package pdftex.def Info: ../assets/largewell.png  used on input line 239.
 (pdftex.def)             Requested size: 155.99762pt x 116.50693pt.
- [17 <../pdf//../assets/autocorr.out.png>]
+
+[17 <../pdf//../assets/autocorr.out.png>]
 <../assets/transsmall.png, id=118, 640.3925pt x 482.80376pt>
 File: ../assets/transsmall.png Graphic file (type png)
 <use ../assets/transsmall.png>
-Package pdftex.def Info: ../assets/transsmall.png  used on input line 919.
+Package pdftex.def Info: ../assets/transsmall.png  used on input line 271.
 (pdftex.def)             Requested size: 234.00238pt x 176.41713pt.
  [18 <../pdf//../assets/translarge.png> <../pdf//../assets/largewell.png>]
 <../assets/well1.png, id=126, 462.528pt x 346.896pt>
 File: ../assets/well1.png Graphic file (type png)
 <use ../assets/well1.png>
-Package pdftex.def Info: ../assets/well1.png  used on input line 948.
+Package pdftex.def Info: ../assets/well1.png  used on input line 300.
 (pdftex.def)             Requested size: 155.99762pt x 117.00089pt.
 <../assets/well252.png, id=127, 462.528pt x 346.896pt>
 File: ../assets/well252.png Graphic file (type png)
 <use ../assets/well252.png>
-Package pdftex.def Info: ../assets/well252.png  used on input line 950.
+Package pdftex.def Info: ../assets/well252.png  used on input line 302.
 (pdftex.def)             Requested size: 155.99762pt x 117.00089pt.
 <../assets/well400.png, id=128, 462.528pt x 346.896pt>
 File: ../assets/well400.png Graphic file (type png)
 <use ../assets/well400.png>
-Package pdftex.def Info: ../assets/well400.png  used on input line 952.
+Package pdftex.def Info: ../assets/well400.png  used on input line 304.
 (pdftex.def)             Requested size: 155.99762pt x 117.00089pt.
 <../assets/well612.png, id=129, 462.528pt x 346.896pt>
 File: ../assets/well612.png Graphic file (type png)
 <use ../assets/well612.png>
-Package pdftex.def Info: ../assets/well612.png  used on input line 954.
+Package pdftex.def Info: ../assets/well612.png  used on input line 306.
 (pdftex.def)             Requested size: 155.99762pt x 117.00089pt.
  [19 <../pdf//../assets/transsmall.png>]
-<../assets/F8.png, id=134, 462.528pt x 346.896pt>
-File: ../assets/F8.png Graphic file (type png)
-<use ../assets/F8.png>
-Package pdftex.def Info: ../assets/F8.png  used on input line 964.
+<../assets/F10.png, id=134, 462.528pt x 346.896pt>
+File: ../assets/F10.png Graphic file (type png)
+<use ../assets/F10.png>
+Package pdftex.def Info: ../assets/F10.png  used on input line 316.
 (pdftex.def)             Requested size: 117.00119pt x 87.75066pt.
 <../assets/F20.png, id=135, 462.528pt x 346.896pt>
 File: ../assets/F20.png Graphic file (type png)
 <use ../assets/F20.png>
-Package pdftex.def Info: ../assets/F20.png  used on input line 966.
+Package pdftex.def Info: ../assets/F20.png  used on input line 318.
 (pdftex.def)             Requested size: 117.00119pt x 87.75066pt.
-<../assets/F50.png, id=136, 462.528pt x 346.896pt>
-File: ../assets/F50.png Graphic file (type png)
-<use ../assets/F50.png>
-Package pdftex.def Info: ../assets/F50.png  used on input line 968.
+<../assets/F46.png, id=136, 462.528pt x 346.896pt>
+File: ../assets/F46.png Graphic file (type png)
+<use ../assets/F46.png>
+Package pdftex.def Info: ../assets/F46.png  used on input line 320.
 (pdftex.def)             Requested size: 117.00119pt x 87.75066pt.
 <../assets/F55.png, id=137, 462.528pt x 346.896pt>
 File: ../assets/F55.png Graphic file (type png)
 <use ../assets/F55.png>
-Package pdftex.def Info: ../assets/F55.png  used on input line 971.
+Package pdftex.def Info: ../assets/F55.png  used on input line 323.
 (pdftex.def)             Requested size: 117.00119pt x 87.75066pt.
 <../assets/F65.png, id=138, 462.528pt x 346.896pt>
 File: ../assets/F65.png Graphic file (type png)
 <use ../assets/F65.png>
-Package pdftex.def Info: ../assets/F65.png  used on input line 973.
+Package pdftex.def Info: ../assets/F65.png  used on input line 325.
 (pdftex.def)             Requested size: 117.00119pt x 87.75066pt.
- [20 <../pdf//../assets/well1.png> <../pdf//../assets/well252.png> <../pdf//../
-assets/well400.png> <../pdf//../assets/well612.png> <../pdf//../assets/F8.png> 
-<../pdf//../assets/F20.png> <../pdf//../assets/F50.png> <../pdf//../assets/F55.
-png> <../pdf//../assets/F65.png>]
-(../pdf//fall23writeup1.aux) ) 
+)
+[20 <../pdf//../assets/well1.png> <../pdf//../assets/well252.png> <../pdf//../a
+ssets/well400.png> <../pdf//../assets/well612.png> <../pdf//../assets/F10.png> 
+<../pdf//../assets/F20.png> <../pdf//../assets/F46.png> <../pdf//../assets/F55.
+png> <../pdf//../assets/F65.png>] (../pdf//fall23writeup1.aux) ) 
 Here is how much of TeX's memory you used:
- 27195 strings out of 480608
- 660748 string characters out of 5903631
- 989591 words of memory out of 5000000
- 42609 multiletter control sequences out of 15000+600000
+ 27207 strings out of 480608
+ 660892 string characters out of 5903631
+ 989589 words of memory out of 5000000
+ 42612 multiletter control sequences out of 15000+600000
  544793 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,18n,98p,846b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvi
-ps/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publi
-c/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr6.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy6.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
-.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.
-pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
-m10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm070
-0.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm0800.
-pfb>
-Output written on ../pdf//fall23writeup1.pdf (22 pages, 625419 bytes).
+{/usr/local/tex
+live/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texl
+ive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texliv
+e/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive
+/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texl
+ive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texliv
+e/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/
+2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/20
+20/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2020/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2020/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2020/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2020/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2020/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2020/texmf-dist/font
+s/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2020/texmf-dist/fonts
+/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020/texmf-dist/f
+onts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2020/texmf-dist/fon
+ts/type1/public/cm-super/sfrm0800.pfb>
+Output written on ../pdf//fall23writeup1.pdf (22 pages, 624182 bytes).
 PDF statistics:
  219 PDF objects out of 1000 (max. 8388607)
  118 compressed objects within 2 object streams

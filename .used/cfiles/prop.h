@@ -5,7 +5,7 @@
 #include <complex.h>
 
 static double k; // initialized in init_psi0
-static const int nt = 2222;
+static const int nt = 500;
 static const double dx = 0.2;
 static const int nx = 2000;
 static const double R = dx * nx;
@@ -28,7 +28,7 @@ void init_d(complex double* d, complex double* d2, const double* V, double dt);
 
 // calculate the next phi
 void next_phi(const complex double* psi, complex double* phi, const double* V,
-double dt);
+        double dt);
 
 // solves linear system where the coefficient matrix is tridiagonal
 void solver(complex double* psi, complex double* phi, const complex double* d,

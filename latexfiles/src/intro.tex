@@ -1,0 +1,32 @@
+\addcontentsline{toc}{section}{Introduction}
+\section*{Introduction}
+
+Computationally studying a physical observable of a single-electron atom may
+require the use of a wave function represented in a computer.  To compute
+the expected value of any physical quantity, one may make use of the
+probability distribution function (PDF) definition of expected value. The
+square magnitude of a solution to the Schrödoinger equation over position at
+a given time may be used as a PDF if it is normalized. It is very difficult
+to determine the state of a wave function at a given time in some systems by
+analytical methods, so computational modeling of the wave functions is used.
+
+I used the implicit scheme given an initial discretized wave function to
+propagate the wave function through discrete time. The implicit scheme and
+discretization of time and space introduces some limitations, but these
+limitations are predictable. This will allow for easier computation of
+expected values for physical quantities of interest, such as dipole
+acceleration, on an atomic level, which can be rescoped to a macro-level
+system using Maxwell's equations. This process can aid in understanding and
+manipulating certain atomic and molecular processes when combined with
+experimental methods such as utilizing high harmonic generation to create
+attosecond pulses of light.
+
+The programs implement a basic particle-in-a-box system. The wave packet was
+constructed by multiplying a Gaussian function by a plane wave equation, and
+its evolution was computed iteratively by the implicit scheme of
+propagation. We investigate a system with constant potential energy as well
+as a potential well. The programs are verified by comparing computationally
+calculated expected values to those which were analytically calculated as
+well as assessing the autocorrelation. The results of different condidtions
+are examined graphically, and physical and mathematical explanations to
+those results are provided.

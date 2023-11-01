@@ -1,0 +1,543 @@
+\addcontentsline{toc}{section}{Theory}
+\section*{Theory}
+
+Storage and memory on computers are finite, so a wave function or packet and
+the dynamics of it must be represented discretely. Both time and space are
+discretized into a grid with units $\delta t$ and $\delta x$, respectively,
+and we work within one dimension of space. We choose units such that $\hbar$
+is equal to one, and we assume that mass is one. Unless stated otherwise,
+change is assumed to be with respect to time.
+
+\addcontentsline{toc}{subsection}{Implicit Scheme of Propegation}
+\subsection*{Implicit Scheme of Propagation}
+
+I chose to implicitly propegate a wave function by virtue of computational
+simplicity. We start with the time-dependent Schrödinger equation.
+
+\[
+    \hat{H} \Psi(x, t) = \hat{E} \Psi(x, t)
+\]
+
+where $\hat{H} = \frac{\hat{p} ^ 2}{2} + V(x)$. We may express the energy
+operator explicitly and then solve differential equation for $\Psi$.
+
+\begin{align*}
+    \hat{H} \Psi(t)
+    &= i\frac{\partial}{\partial t} \Psi(t) \\
+    \frac{\partial}{\partial t} \Psi(t)
+    &= -i\hat{H} \Psi(t) \\
+    \Psi(t) &= e^{-i\hat{H} t} \Psi(0) \\
+    \Psi(t) &=
+    \frac{e^{-i\hat{H} \frac{t}{2}}}{e^{i\hat{H} \frac{t}{2}}} \Psi(0)
+\end{align*}
+
+We expand both the numerator and the denomenator of the operator into a
+first degree Maclaurin series.
+
+\[
+    \left( 1 + i\hat{H} \frac{t}{2} \right) \Psi(t) \approx
+    \left( 1 - i\hat{H} \frac{t}{2} \right) \Psi(0)
+\]
+
+\pagebreak
+
+Considering that we are working in discrete space and time, we have
+
+\begin{equation}
+    \left( 1 + iH \frac{\delta t}{2} \right) \vec{\Psi}(\delta t) \approx
+    \left( 1 - iH \frac{\delta t}{2} \right) \vec{\Psi}(0)
+    \label{eq:impsch}
+\end{equation}
+
+where $H$ is the matrix representation of the Hamiltonian operator and
+$\vec{\Psi}(t)$ is the column vector representation of $\Psi(t)$ such that
+$\vec{\Psi}(t)_j$ is the value of $\Psi(t)$ at $x = j \cdot \delta x$. The
+wave function at the next time step is computed by solving the linear system
+through forward elimination and backsubstitution.
+
+\paragraph{Total Energy} Suppose we have a wave fuction representing a plane
+wave, $\psi(x) = e^{ikx}$. Assuming $\hat{H} = \frac{\hat{p}^2}{2}$, we have,
+in discrete space, from the time-independent Schödinger equation
+
+\[
+    -\frac{1}{2}\vec{\psi}_x'' = E \vec{\psi}_x.
+\]
+
+Now we take the numerical second derivative of $\vec{\psi}_x$ by calculating
+the sum of the Taylor series expansions for $\vec{\psi}_{x - \delta t}$ and
+$\vec{\psi}_{x + \delta t}$ and then solve for $E$.
+
+\begin{gather*}
+    -\frac{\vec{\psi}_{x - \delta t} - 2\vec{\psi}_x + \vec{\psi}_{x +
+    \delta t}}{2 \delta t^2} + \mathcal{O}\left[\delta t^2\right]
+    = E \vec{\psi}_x
+    \\
+    -e^{ikx}
+    \left(
+    \frac{e^{-ik\delta t} + e^{ik\delta t} - 2}{2 \delta t^2}
+    \right)
+    \approx E e^{ikx}
+    \\
+    -\frac{2\cos(k)\delta t - 2}{2\delta t^2} \approx E
+\end{gather*}
+
+\pagebreak
+
+We examine the behavior of energy as the time step becomes small.
+
+\begin{align}
+    \lim_{\delta t \to 0} E
+    &\approx
+    \lim_{\delta t \to 0} -\frac{\cos{k\delta t} - 1}{\delta t^2}
+    \nonumber
+    \\
+    &\approx \lim_{\delta t \to 0} \frac{k\sin{k\delta t}}{2\delta t}
+    \nonumber
+    \\
+    &\approx \lim_{\delta t \to 0} \frac{k^2\cos{k\delta t}}{2}
+    \nonumber
+    \\
+    &\approx \lim_{\delta t \to 0}
+    \frac{k^2 \left( 1 - \frac{(k\delta t) ^ 2}{2} \right) +
+    \mathcal{O}\left[\delta t^4\right]}{2}
+    \nonumber
+    \\
+    E &\approx \frac{k^2}{2}
+    \label{eq:EnoV}
+\end{align}
+
+Note that the energy in discrete space varies with the time step and will
+never be exactly $\frac{k^2}{2}$ as stored in the computer. Additionally,
+the maximum energy of the wave is given by $\frac{2}{\delta x^2}$.
+
+\paragraph{Error} In our derivation of equation \eqref{eq:impsch}, we
+approximated the exponential operators by truncating the Taylor series
+expansions of them. Note that $e^{-i\hat{H}t} \approx
+\frac{1 - iH\frac{\delta t}{2}}{1 + iH\frac{\delta t}{2}}$. If we expand the
+left side of the approximate equation to its Maclaurin series and multiply
+both sides by $1 + iH\frac{\delta t}{2}$, then we arrive at
+
+\[
+    1 - i\hat{H}\frac{\delta t}{2} - i\hat{H}^3\frac{\delta t^3}{12}
+    \approx
+    1 - iH\frac{\delta t}{2}
+\]
+
+so the error for the propagation operator is on the order of $\hat{H}^3
+\delta t^3$. This error will propagate through time.
+
+\paragraph{Unitary Operator} Because of the numerical second derivative, we
+know that $H$ is a tridiagonal real matrix, so it is Hermitian as an
+operator. In order to use the wave function to calculate expected values,
+the square magnitude of the wave function must be a PDF over $x$.
+Therefore, the wave function's square magnitude integrated over all $x$ (or
+in discrete space, the norm) must equal to one for all time, so our operator
+in equation \eqref{eq:impsch} should be unitary.
+
+\begin{align*}
+    \left(
+    \frac{1 - iH\frac{\delta t}{2}}{1 + iH\frac{\delta t}{2}}
+    \right)^\dag
+    \left(
+    \frac{1 - iH\frac{\delta t}{2}}{1 + iH\frac{\delta t}{2}}
+    \right)
+    &=
+    \frac{\left(1 + iH^\dag\frac{\delta t}{2}\right)
+    \left(1 - iH\frac{\delta t}{2}\right)}
+    {\left(1 - iH^\dag\frac{\delta t}{2}\right)
+    \left(1 + iH\frac{\delta t}{2}\right)}
+    \\
+    &=
+    \frac{\left(1 + iH\frac{\delta t}{2}\right)
+    \left(1 - iH\frac{\delta t}{2}\right)}
+    {\left(1 - iH\frac{\delta t}{2}\right)
+    \left(1 + iH\frac{\delta t}{2}\right)}
+    \\
+    &= 1
+\end{align*}
+\vspace{-0.9cm}
+
+\addcontentsline{toc}{subsection}{Model Boundary Conditions and Parameters}
+\subsection*{Model Boundary Conditions and Parameters}
+We model a one-dimensional particle in a box, where the wave packet is in an
+infinite potential well bounded at $x = 0, R$, where $R$ is large enough to
+emulate an infinite $x$ space for the wave packet. As the potential energy
+tends toward infinity, we see that the magnitude of the wave function is
+equal to 0 at at the $x$ boundaries. To reiterate, the grid spacing for time
+and space is given by $\delta t$ and $\delta x$ respectively. Finally, we
+propagate for a definite time. Also note the the parameters for a Gaussian
+wave packet such as the wave number and standard deviation.
+
+\addcontentsline{toc}{subsection}{Computer Representation of the Hamiltonian
+and Wave Function}
+\subsection*{Computer Representation of the Hamiltonian and Wave Function}
+
+\paragraph{Wave Function as a Column Vector}
+A wave packet is a superposition of plane waves that have a nonzero range
+in wave number and angular frequency which forms a Gaussian envelope. For a
+given time, it can be created by the form
+
+\vspace{-0.5cm}
+\[
+    \Psi(x) = G(x)e^{ikx}
+\]
+
+where $\Psi$ is a wave packet, $G$ a gaussian function, and $e^{ikx}$ a
+plane wave expression. For storing on a machine, I represented $\Psi(x)$ as
+
+\vspace{-0.2cm}
+\[
+    \vec{\Psi}(t) =
+    \begin{bmatrix}
+        \Psi(1 \delta x, t) \\
+        \Psi(2 \delta x, t) \\
+        \vdots \\
+        \Psi(N \delta x, t) \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \Psi_1(t) \\
+        \Psi_2(t) \\
+        \vdots \\
+        \Psi_N(t) \\
+    \end{bmatrix}
+\]
+
+where $N$ is the number of grid spaces on $x$.
+
+\paragraph{The Propagator Matrix}
+
+Let us denote $V(j \delta x)$ as $V_j$. Equation \eqref{eq:impsch} can be
+expanded to
+
+\begin{gather}
+    \scalebox{0.7}{$
+    \Psi_j(\delta t) + i\frac{\delta t}{2}
+    \left(
+    -\frac{\Psi_{j-1}(\delta t)-2\Psi_j(\delta t)+\Psi_{j+1}(\delta t)}
+    {2 \delta x^2}
+    + V_j \Psi_j(\delta t)
+    \right)
+    $}
+    =
+    \scalebox{0.7}{$
+    \Psi_j(0) - i\frac{\delta t}{2}
+    \left(
+    -\frac{\Psi_{j-1}(0)-2\Psi_j(0)+\Psi_{j+1}(0)}
+    {2 \delta x^2}
+    + V_j \Psi_j(0)
+    \right)
+    $}
+    \nonumber
+    \\
+    \scalebox{0.65}{$
+    \begin{bmatrix}
+        1 + i\frac{\delta t}{2}\left(V_1 + \frac{1}{\delta t^2}\right)
+        &
+        -i\frac{\delta t}{(2 \delta x)^2} & 0 & 0 & 0 & \cdots & 0 \\
+        -i\frac{\delta t}{(2 \delta x)^2}
+        &
+        1 + i\frac{\delta t}{2}\left(V_2 + \frac{1}{\delta t^2}\right)
+        & -i\frac{\delta t}{(2 \delta x)^2} & 0 & 0 & \cdots & 0 \\
+        0 & \ddots & \ddots & \ddots & 0 & \cdots & 0 \\
+        \vdots & & & & & & \vdots \\
+        0 & \cdots & \cdots & 0 &
+        -i\frac{\delta t}{(2 \delta x)^2}
+        &
+        1 + i\frac{\delta t}{2}\left(V_2 + \frac{1}{\delta t^2}\right)
+        & -i\frac{\delta t}{(2 \delta x)^2}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \Psi_1(\delta t) \\
+        \Psi_2(\delta t) \\
+        \vdots \\
+        \\
+        \Psi_N(\delta t)
+    \end{bmatrix}
+    =
+    \vec{\phi}_j(0)
+    $}
+    \label{eq:prop}
+\end{gather}
+
+where the matrix in equation \eqref{eq:prop} is the propagator matrix.
+
+\addcontentsline{toc}{subsection}{Finite Square Potential Well}
+\subsection*{Finite Square Potential Well}
+A potential well is a region where the wave packet experiences a lower
+amount of potential energy. A well can be modeled by defining the potential
+energy function $V(x)$ to include a region with a lower value.
+
+In computer implementation, the well must be continuous due to the Gibbs
+phenomenon. A smooth square well that does not allow for the occurance of
+Gibbs phenomenon can be achieved by using a higher power Gaussian function.
+In my modeling, I set the width of the well to be smaller than the width of
+the wave packet, which will be discussed in more detail within the
+\nameref{sec:Results} section.
+
+\addcontentsline{toc}{subsubsection}{Transmission Coefficient}
+\subsubsection*{Transmission Coefficient}
+As the wave propagates through the finite potential well, some of it is
+reflected backward, and some of it is transmitted through to the other side
+of the well.
+
+Suppose a potential well has a width of $2a$ and is centered at $x = 0$,
+where the potential $V(x)$ is equal to $-V_0$ for $-a \leq x \leq a$ and $0$
+for $x > a$ and $x < -a$. We label the region corresponding to $x < -a$ as
+region I, to $-a < x < a$ as region II, to $x > a$ as region III. During our
+meetings we solved for the one-dimentional time-independent Schrödinger
+equation for when $E > V(x)$ and $E < V(x)$, obtaining
+
+\begin{align*}
+    \Psi_\mathrm{I}(x) &= Ae^{ikx} + Be^{-ikx} \\
+    \Psi_{\mathrm{II}}(x) &= C\sin(lx) + D\cos(lx) \\
+    \Psi_{\mathrm{III}}(x) &= Fe^{ikx}
+\end{align*}
+
+where $l = \sqrt{2(E + V_0)}$, $k = \sqrt{2E}$, and the subscript of the
+denotation of each function indicates over which region the function is
+defined. The requirements to stitch the three functions into one function
+which is defined for all $x$ follows the properties of a valid solution to
+the Schrödinger equation:
+
+We compute the transmission coefficient ($T$) by definition ($T^{-1} =
+\frac{\left| A \right| ^{2}}{\left| F \right| ^{2}}$), substituting $F$ with
+equivalent expression in terms of the energy of the wave ($E$) and the depth
+of the potential well.
+
+The requirements to stitch the three wave functions into one follows the
+properties of a valid solution to the Schrödinger equation:
+
+\begin{gather}
+    Ae^{-ika} + Be^{ika} = -C\sin(la) + D\cos(la) \label{eq:stitch1} \\
+    C\sin(la) + D\cos(la) = Fe^{ika} \label{eq:stitch2} \\
+    ik(Ae^{-ika} - Be^{ika}) = l(C\cos(la) + D\sin(la)) \label{eq:stitch3} \\
+    l(C\cos(la) - D\sin(la)) = ikFe^{ika} \label{eq:stitch4}
+\end{gather}
+
+Now we solve for $F$ in terms of $l$, $k$, $a$, and $A$. From equation
+\eqref{eq:stitch2}, we solve
+
+\begin{equation}
+    C = \frac{Fe^{ika} - D\cos(la)}{\sin(la)} \label{eq:CinD}
+\end{equation}
+
+and substitute into equation \eqref{eq:stitch4} to solve for
+
+\begin{gather*}
+    Fe^{ika}
+    \left(
+    \frac{ik}{l}\sin(la) - \cos(la)) = -D(\cos^2(la) + \sin^2(la)
+    \right)
+    \\
+    D = Fe^{ika}
+    \left(
+    \cos(la) - \frac{ik}{l}\sin(la)
+    \right)
+\end{gather*}
+
+Then we substitute $D$ in terms of $F$ into equation \eqref{eq:CinD} and
+simplify. Note $1 - \cos^2(la) = 1 - \frac{1}{2}(1 + \cos(2la)) = 1 -
+\frac{1}{2}(1 + 1 - 2\sin^2(la)) = \sin^2(la)$.
+
+\[
+    \scalebox{1}{$
+    C
+    = \frac{Fe^{ika}(1 - \cos^2(la) +
+    \frac{ik}{l}\cos(la)\sin(la))}{\sin(la)}
+    = Fe^{ika}
+    \left(
+    \frac{1 - \cos^2(la)}{\sin(la)} + \frac{ik}{l}\cos(la)
+    \right)
+    $}
+\]
+
+\[
+    C = Fe^{ika}
+    \left(
+    \sin(la) + \frac{ik}{l}\cos(la)
+    \right)
+\]
+
+Note $\cos^2(la) - \sin^2(la) = \cos(2la)$ and $2\cos(la)\sin(la) =
+\sin(2la)$. Substituting $D$ and $C$ in terms of $F$ into equation
+\eqref{eq:stitch1}, we get
+
+\begin{gather}
+    \scalebox{0.9}{$
+    Ae^{-ika}
+    = Fe^{ika}
+    \left(
+    -\sin^2(la) - \frac{ik}{l}\cos(la)\sin(la) + \cos^2(la)
+    - \frac{ik}{l}\sin(la)\cos(la)
+    \right)
+    - Be^{ika}
+    \nonumber
+    $}
+    \\
+    = Fe^{ika}
+    \left(
+    \cos(2la) - \frac{ik}{l}\sin(2la)
+    \right)
+    - Be^{ika}. \label{eq:AinFB}
+\end{gather}
+
+Now we substitute this result and $D$ and $C$ in terms of $F$ into equation
+\eqref{eq:stitch3} and solve for $B$.
+
+\begin{align*}
+    \scalebox{0.8}{$
+    Fe^{ika}
+    \left(
+    -\frac{ik}{l}\sin(2la) + \cos(2la)
+    \right)
+    - 2Be^{ika}
+    $}
+    &=
+    \scalebox{0.8}{$
+    \frac{l}{ik}Fe^{ika}
+    \left(
+    2\cos(la)\sin(la) + \frac{ik}{l}\cos^2(la) - \frac{ik}{l}\sin^2(la)
+    \right)
+    $}
+    \\
+    -2B &= F\sin(2la)
+    \left(
+    \frac{l}{ik} + \frac{ik}{l}
+    \right)
+    \\
+    B &= i\frac{\sin(2la)}{2kl}(l^2 - k^2)F
+\end{align*}
+
+To solve for $F$ in terms of $A$ we substitute $B$, $C$, and $D$ into
+equation \eqref{eq:AinFB}.
+
+\begin{gather*}
+    Ae^{-ika}
+    = Fe^{ika}
+    \left(
+    \cos(2la) - \frac{ik}{l}\sin(2la)
+    - i\frac{\sin(2la)}{2kl}(l^2 - k^2)
+    \right)
+    \\
+    Ae^{-2ika}
+    = Fe^{ika}
+    \left(
+    \cos(2la) -
+    \left(
+    \frac{ik}{l} + \frac{i(l^2 - k^2)}{2lk}
+    \right)
+    \sin(2la)
+    \right)
+    \\
+    F = \frac{e^{-2ika}A}{\cos(2la) - i
+    \left(
+    \frac{k^2 + l^2}{2kl}
+    \right)
+    \sin(2la)}
+\end{gather*}
+
+Finally, we compute $T^{-1}$ and rewrite it in terms of $E$ and $V_0$.
+
+\begin{gather*}
+    T^{-1} = \frac{\left| A \right| ^{2}}{\left| F \right| ^{2}}
+    = \frac{\left| A \right| ^{2}}{
+        \frac{\left| e^{-2ika} \right| ^2 \left| A \right | ^2}{
+                \left|
+                \cos^2(2la) + i \left( \frac{k^2 + l^2}{2kl} \right)
+                \sin(2la)
+                \right| ^2
+            }
+        }
+    = \cos^2(2la) + \left( \frac{(k^2 + l^2)^2}{4k^2l^2} \right) \sin^2(2la)
+    \\
+    = 1 - \sin^2(2la) + \left( \frac{(k^2 + l^2)^2}{4k^2l^2}
+    \right) \sin^2(2la)
+    = 1 + \left( \frac{k^4 - 2k^2l^2 + l^4}{4k^2l^2} \right) \sin^2(2la)
+    \\
+    = 1 + \left( \frac{4E^2 - 8E(E + V_0) + 4(E^2 + 2EV_0 + V_0^2)}
+    {16E(E + V_0)} \right) \sin^2(2a\sqrt{2(E + V_0)}
+\end{gather*}
+
+\begin{center}
+    \boxed{
+        T = \frac{1}{1 + \left( \frac{V_0}{4E(E + V_0)} \right)
+        \sin^2(2a\sqrt{2(E + V_0)}}
+    }
+\end{center}
+
+Note that T oscillates with changes in the width of the well and the energy
+of the wave.
+
+\addcontentsline{toc}{subsection}{Expected Values over Time}
+\subsection*{Expected Values over Time}
+\label{sec:expected}
+
+In the \nameref{subsec:verify} subsection, the numerically calculations of
+the expected values of certain physical observables of the wave packet
+through time will be presented to gain confidence in correctness of my
+programs. In this section, we will study the theoretic evolution of those
+values, and the potential energy functions of interest are determined by
+systems which were modeled computationally.
+
+Both systems are closed, so energy is conserved and the value of the
+Hamiltonian does not change.
+
+\addcontentsline{toc}{subsubsection}{Constant Potential Energy}
+\subsubsection*{Constant Potential Energy}
+
+From equation \eqref{eq:EnoV}, we can deduce that $p \approx k$. As the wave
+packet approaches a wall, the expected momentum will decrease as some of the
+wave packet will have been reflected backward, while the rest of the wave
+packet is still moving forward. The expected momentum will continue to
+decrease until the wave packet has been fully reflected, at which point $p
+\approx -k$.
+
+Recall that a wavepacket is a superposition of eigenstates, and that it has
+multiple, distinct $k$ values. One may calculate the distribution of the $k$
+values from a Fourier transform, and would notice that it corresponds to the
+Gaussian envelope of the wave packet. The components of the wave packet with
+larger corresponding wave numbers will have larger momentum than those with
+smaller corresponding wave numbers, so at every reflection, change in
+momentum after the inflection point is less drastic.
+
+The expected momentum is proportional to the change in the expected position
+(in our case, it exactly describes the motion of the wave packet because we
+assume that mass is one), so the expected $x$ would increase to a certain
+point linearly, then decrease linearly to a certain point, and so on.
+Because of the range of wave numbers discussed above, the change in $x$ of
+the wave packet becomes larger, and the maxiumum expected $x$ for each
+period is less than that for the previous period.
+
+\addcontentsline{toc}{subsubsection}{Finite Square Potential Well}
+\subsubsection*{Finite Square Potential Well}
+
+Just as in a system with a constant potential function, the momuntum of the
+wave packet is initially approximately $k$ in a system with a finite
+potential well. However, once the wave packet passes the region with lower
+potential, part of it is transmitted as a wave packet whose momentum has the
+same sign as the momentum of the original wave packet, and the rest
+reflected as another wave packet whose momentum has the opposite sign as the
+momentum of the original wave packet. Otherwise, it is negative. The larger
+the probability of the particle that is localized by the wave packet being
+past the potential well after transmission, the larger the expected momentum
+will be. If more of the wave packet is transmitted, the momentum between the
+time of finishing transmission and reflection off the boundaries of the
+infinite square well is positive.
+
+Of course, the behavior of the momentum at reflection off the boundaries of
+the box is consistent with that within a box with constant potential, and
+the consequences of the wave packet having a range of wave numbers holds in
+this system. Again, the change of the expected position is proportional to
+the momentum.
+
+\paragraph{Effects of Changing Well Width and Energy}  We know that the
+behavior of expected momentum and position in a finite square well are
+contingent on the transmission of the initial wave packet(s) and that the
+transmission changes with the width of the well and the energy of the wave
+packet. Thus the behavior of the those expected values change with the width
+of the well and the energy of the wave packet. Changing the value of either
+with the other held constant oscillates the value of the transmission
+coefficient, and the changes in the evolution of expected momentum and
+expected position with respect to the width of the well and the energy of
+the wave packet follow from the descriptions detailed above.

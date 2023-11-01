@@ -43,7 +43,7 @@ void init_d(complex double* d, complex double* d2, const double* V, double dt) {
 }
 
 void next_phi(const complex double* psi, complex double* phi, const double* V,
-    double dt) {
+        double dt) {
     phi[0] = phij(0, psi[0], psi[1], V[0], dt);
     for (int j = 1; j < nx - 1; j++) {
         phi[j] = phij(psi[j - 1], psi[j], psi[j + 1], V[j], dt);
