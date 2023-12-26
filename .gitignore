@@ -1,0 +1,8 @@
+latexfiles/assets/*
+clips/*
+convergeruns
+.used/datafiles/*
+.used/pythonscripts/images/*
+.used/figures/*
+*.swp
+.DS_store
