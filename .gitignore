@@ -6,3 +6,7 @@ convergeruns
 .used/figures/*
 *.swp
 .DS_store
+*.lof
+*.log
+*.toc
+*.aux
